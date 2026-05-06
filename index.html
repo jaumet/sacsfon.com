@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SACSFON — Marroquineria artesanal</title>
+  <meta name="description" content="SACSFON — Marroquineria artesanal. Bosses, bandoleres, motxilles i carteres fetes a mà.">
+  <link rel="icon" href="images/favicon.ico">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f4ef;
+      --text: #1a1714;
+      --muted: #8a7e74;
+      --accent: #7a4e2d;
+      --border: #ddd6cc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 2.5rem;
+      background: rgba(247, 244, 239, 0.93);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      letter-spacing: 0.35em;
+      font-weight: normal;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--text); }
+
+    /* ── Hero ── */
+    .hero {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 50%);
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
+      padding: 3.5rem 2.5rem;
+      color: #fff;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      font-weight: normal;
+      letter-spacing: 0.45em;
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-text p {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    /* ── Sections ── */
+    .section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      display: block;
+    }
+
+    /* ── Gallery grid ── */
+    #galeria { background: var(--bg); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .grid-item {
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #e8e0d5;
+    }
+
+    .grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease, opacity 0.3s;
+      opacity: 0.95;
+    }
+
+    .grid-item:hover img {
+      transform: scale(1.06);
+      opacity: 1;
+    }
+
+    /* Make first item span 2 cols */
+    .grid-item:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: auto;
+    }
+
+    /* ── Contact ── */
+    #contacte {
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-cols {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem 5rem;
+      align-items: flex-start;
+    }
+
+    .contact-item h3 {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      font-weight: normal;
+    }
+
+    .contact-item a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .contact-item a:hover { color: var(--accent); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 1.8rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      nav ul { gap: 1.5rem; }
+      .section-inner { padding: 3.5rem 1.25rem; }
+      .hero-text { padding: 2.5rem 1.25rem; }
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+      .grid-item:first-child { grid-column: span 2; grid-row: span 1; aspect-ratio: 2 / 1; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#">SACSFON</a>
+  <ul>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#contacte">Contacte</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <img src="images/inicio_sacsfon.jpg" alt="SACSFON — Marroquineria artesanal">
+  <div class="hero-text">
+    <h1>SACSFON</h1>
+    <p>Marroquineria artesanal</p>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="galeria">
+  <div class="section-inner">
+    <span class="section-label">Galeria</span>
+    <div class="grid">
+      <div class="grid-item"><img src="images/ing1_sacsfon.jpg" alt="" loading="eager"></div>
+      <div class="grid-item"><img src="images/ing2_sacsfon.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/1sacs_sacsfon-crop-u450.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/ing3_sacsfon.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/2sacs_sacsfon-crop-u655.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/3sacs_sacsfon-crop-u675.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/ing4_sacsfon.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/4sacs_sacsfon-crop-u695.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/5sacs_sacsfon-crop-u715.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/ing5_sacsfon.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/6sacs_sacsfon-crop-u735.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/7sacs_sacsfon-crop-u755.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/8sacs_sacsfon-crop-u775.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/9sacs_sacsfon-crop-u795.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/10sacs_sacsfon-crop-u815.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/11sacs_sacsfon-crop-u835.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/12sacs_sacsfon-crop-u855.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/13sacs_sacsfon-crop-u875.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/14sacs_sacsfon-crop-u895.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/15sacs_sacsfon-crop-u915.jpg" alt="" loading="lazy"></div>
+      <div class="grid-item"><img src="images/16sacs_sacsfon-crop-u935.jpg" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contacte">
+  <div class="section-inner">
+    <span class="section-label">Contacte</span>
+    <div class="contact-cols">
+      <div class="contact-item">
+        <h3>Email</h3>
+        <a href="mailto:info@sacsfon.com">info@sacsfon.com</a>
+      </div>
+      <div class="contact-item">
+        <h3>Instagram</h3>
+        <a href="https://www.instagram.com/sacsfon/" target="_blank" rel="noopener">@sacsfon</a>
+      </div>
+      <div class="contact-item">
+        <h3>Facebook</h3>
+        <a href="https://www.facebook.com/Sacsfon-617816861754702/" target="_blank" rel="noopener">Sacsfon</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 SACSFON
+</footer>
+
+</body>
+</html>
